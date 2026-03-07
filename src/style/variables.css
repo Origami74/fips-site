@@ -1,0 +1,46 @@
+:root {
+  /* Backgrounds */
+  --bg-page: #0d1117;
+  --bg-surface: #151525;
+  --bg-surface-alt: #151520;
+
+  /* Layer colors (from protocol diagrams) */
+  --color-app: #1a3a2a;
+  --color-app-border: #40a060;
+  --color-tun: #1a2a3a;
+  --color-tun-border: #4080c0;
+  --color-fsp: #2a2040;
+  --color-fsp-border: #8060c0;
+  --color-fmp: #2e3a5e;
+  --color-fmp-border: #5080c0;
+  --color-transport: #2a1a1a;
+  --color-transport-border: #c06040;
+
+  /* Text */
+  --text-primary: #e0e0e0;
+  --text-secondary: #909090;
+  --text-muted: #606080;
+
+  /* Borders */
+  --border-subtle: #404060;
+  --border-medium: #505070;
+
+  /* Accent */
+  --accent-gold: #d0a040;
+
+  /* Typography */
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 8rem;
+
+  /* Layout */
+  --content-max-width: 960px;
+  --content-wide-max-width: 1200px;
+}
