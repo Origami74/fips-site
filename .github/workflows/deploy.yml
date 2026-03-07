@@ -4,9 +4,9 @@ on:
   # Allow manual triggering
   workflow_dispatch:
   
-  # Run on commits to main branch
+  # Run on commits to master branch
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 # Allow GitHub Pages deployment
 permissions:
