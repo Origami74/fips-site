@@ -74,12 +74,3 @@ Colors and typography are derived from the existing SVG diagram palette:
 ## Deployment
 
 The `dist/` directory contains a fully static site that can be deployed to any static hosting service (GitHub Pages, Cloudflare Pages, Netlify, etc.).
-
-## Content Strategy
-
-The site follows the principles outlined in the functional plan:
-
-- **No marketing language** — technical, factual tone
-- **Progressive disclosure** — overview first, deep links to docs
-- **Visual hierarchy** — diagrams do the heavy lifting
-- **Fast and minimal** — no tracking, no unnecessary dependencies
