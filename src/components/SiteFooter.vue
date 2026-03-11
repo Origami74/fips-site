@@ -8,8 +8,8 @@
         </div>
 
         <nav class="footer-nav" aria-label="Footer links">
-          <a href="https://github.com/fips-network/fips" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://github.com/fips-network/fips/tree/master/docs/design" target="_blank" rel="noopener noreferrer">Design Docs</a>
+          <a href="https://github.com/jmcorgan/fips" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/jmcorgan/fips/tree/master/docs/design" target="_blank" rel="noopener noreferrer">Design Docs</a>
           <a href="https://primal.net/e/nevent1qqsvd3nzk5p92fzp9z7p34m50039dwee0aemrvk9cl2jpng3kawsz0q6wuh7w" target="_blank" rel="noopener noreferrer">Discussion</a>
         </nav>
       </div>

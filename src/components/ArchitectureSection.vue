@@ -73,28 +73,28 @@ const layers = [
     name: 'Application Interface',
     description: 'Native API (npub-addressed datagrams) or IPv6 TUN adapter for legacy apps',
     borderColor: 'var(--color-app-border)',
-    link: 'https://github.com/fips-network/fips/tree/master/docs/design/fips-ipv6-adapter.md',
+    link: 'https://github.com/jmcorgan/fips/tree/master/docs/design/fips-ipv6-adapter.md',
   },
   {
     id: 'fsp',
     name: 'FSP — Session Protocol',
     description: 'End-to-end Noise XK encryption between any two nodes',
     borderColor: 'var(--color-fsp-border)',
-    link: 'https://github.com/fips-network/fips/tree/master/docs/design/fips-session-layer.md',
+    link: 'https://github.com/jmcorgan/fips/tree/master/docs/design/fips-session-layer.md',
   },
   {
     id: 'fmp',
     name: 'FMP — Mesh Protocol',
     description: 'Hop-by-hop Noise IK encryption, spanning tree, bloom filters, routing',
     borderColor: 'var(--color-fmp-border)',
-    link: 'https://github.com/fips-network/fips/tree/master/docs/design/fips-mesh-layer.md',
+    link: 'https://github.com/jmcorgan/fips/tree/master/docs/design/fips-mesh-layer.md',
   },
   {
     id: 'transport',
     name: 'Transport',
     description: 'Pluggable: UDP, Ethernet, WiFi, Bluetooth, Tor, Serial, ...',
     borderColor: 'var(--color-transport-border)',
-    link: 'https://github.com/fips-network/fips/tree/master/docs/design/fips-transport-layer.md',
+    link: 'https://github.com/jmcorgan/fips/tree/master/docs/design/fips-transport-layer.md',
   },
 ]
 </script>

@@ -20,7 +20,7 @@
 
       <div class="header-actions">
         <a
-          href="https://github.com/fips-network/fips"
+          href="https://github.com/jmcorgan/fips"
           target="_blank"
           rel="noopener noreferrer"
           class="action-link action-link--github"
@@ -32,7 +32,7 @@
           <span>GitHub</span>
         </a>
         <a
-          href="https://github.com/fips-network/fips/tree/master/docs/design"
+          href="https://github.com/jmcorgan/fips/tree/master/docs/design"
           target="_blank"
           rel="noopener noreferrer"
           class="action-link action-link--docs"

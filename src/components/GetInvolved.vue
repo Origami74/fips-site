@@ -9,7 +9,7 @@
 
       <div class="gi-grid">
         <a
-          href="https://github.com/fips-network/fips/releases"
+          href="https://github.com/jmcorgan/fips/releases"
           target="_blank"
           rel="noopener noreferrer"
           class="gi-card gi-card--run"
@@ -30,7 +30,7 @@
         </a>
 
         <a
-          href="https://github.com/fips-network/fips/issues"
+          href="https://github.com/jmcorgan/fips/issues"
           target="_blank"
           rel="noopener noreferrer"
           class="gi-card gi-card--break"
@@ -51,7 +51,7 @@
         </a>
 
         <a
-          href="https://github.com/fips-network/fips/tree/master/docs/design"
+          href="https://github.com/jmcorgan/fips/tree/master/docs/design"
           target="_blank"
           rel="noopener noreferrer"
           class="gi-card gi-card--read"

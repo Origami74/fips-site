@@ -5,13 +5,13 @@
 Clone the repo and verify your setup:
 
 ```
-git clone https://github.com/fips-network/fips-site.git
+git clone https://github.com/jmcorgan/fips-site.git
 cd fips-site
 npm install
 npm run dev
 ```
 
-Read the [FIPS protocol repo](https://github.com/fips-network/fips) for background on the project.
+Read the [FIPS protocol repo](https://github.com/jmcorgan/fips) for background on the project.
 
 ## Filing Issues
 
