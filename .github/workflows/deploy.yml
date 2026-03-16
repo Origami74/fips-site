@@ -6,7 +6,6 @@ on:
   
   # Run on commits to master branch
   push:
-    branches: [ master ]
 
 # Allow GitHub Pages deployment
 permissions:
