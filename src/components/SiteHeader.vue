@@ -60,6 +60,7 @@ import { useScrollSpy } from '../composables/useScrollSpy'
 const sections = [
   { id: 'what-it-does', label: 'What It Does' },
   { id: 'how-it-works', label: 'How It Works' },
+  { id: 'learn-discover', label: 'Learn & Discover' },
   { id: 'identity', label: 'Identity' },
   { id: 'get-involved', label: 'Get Involved' },
 ]

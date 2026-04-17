@@ -54,6 +54,22 @@
             Get started
           </a>
         </div>
+
+        <div class="hero-secondary-ctas">
+          <a href="https://learn.fips.network" target="_blank" rel="noopener noreferrer" class="cta-text cta-text--learn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+            </svg>
+            Learn
+          </a>
+          <span class="cta-text-sep" aria-hidden="true">·</span>
+          <a href="https://join.fips.network" target="_blank" rel="noopener noreferrer" class="cta-text cta-text--discover">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75A1.125 1.125 0 0 0 6 4.875v15.75a1.125 1.125 0 0 0 1.5 1.06l6-3 6 3a1.125 1.125 0 0 0 1.5-1.06V4.875A1.125 1.125 0 0 0 19.5 3.75h-12Z"/>
+            </svg>
+            Discover peers
+          </a>
+        </div>
       </div>
 
       <div class="hero-visual">
@@ -224,6 +240,45 @@
 .cta--secondary:hover {
   background-color: rgba(255,255,255,0.04);
   border-color: var(--text-secondary);
+}
+
+/* Secondary text CTAs */
+.hero-secondary-ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: calc(var(--space-sm) * -0.5);
+}
+
+.cta-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.cta-text--learn {
+  color: var(--color-fmp-border);
+}
+
+.cta-text--learn:hover {
+  color: #a0c8ff;
+}
+
+.cta-text--discover {
+  color: var(--color-app-border);
+}
+
+.cta-text--discover:hover {
+  color: #52c070;
+}
+
+.cta-text-sep {
+  color: var(--text-muted);
+  font-size: 0.875rem;
 }
 
 /* Visual side */

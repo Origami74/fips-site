@@ -4,6 +4,7 @@
     <main id="main-content">
       <HeroSection />
       <FeatureBlocks />
+      <LearnDiscover />
       <ArchitectureSection />
       <IdentitySection />
       <GetInvolved />
@@ -18,6 +19,7 @@ import SiteFooter from './components/SiteFooter.vue'
 import HeroSection from './components/HeroSection.vue'
 import FeatureBlocks from './components/FeatureBlocks.vue'
 import ArchitectureSection from './components/ArchitectureSection.vue'
+import LearnDiscover from './components/LearnDiscover.vue'
 import IdentitySection from './components/IdentitySection.vue'
 import GetInvolved from './components/GetInvolved.vue'
 </script>
