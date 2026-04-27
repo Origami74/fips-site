@@ -45,23 +45,6 @@
         </div>
       </div>
 
-      <div class="packet-flow">
-        <div class="packet-flow-header">
-          <p class="section-eyebrow">Packet flow</p>
-          <p class="packet-flow-caption">
-            A packet traversing Node A → B → C → D across heterogeneous transports.
-            Dual-layer encryption: FSP wraps the payload end-to-end, FMP wraps each hop.
-          </p>
-        </div>
-        <div class="packet-flow-diagram">
-          <img
-            src="/diagrams/fips-architecture-overview.svg"
-            alt="Architecture overview: packet traversing Node A to B to C to D across different transports with dual-layer encryption annotated"
-            class="flow-img"
-            loading="lazy"
-          />
-        </div>
-      </div>
     </div>
   </section>
 </template>
@@ -264,37 +247,6 @@ const layers = [
   white-space: nowrap;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-}
-
-/* Packet flow */
-.packet-flow {
-  border-top: 1px solid var(--border-subtle);
-  padding-top: var(--space-xl);
-}
-
-.packet-flow-header {
-  margin-bottom: var(--space-lg);
-}
-
-.packet-flow-caption {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: var(--space-sm) 0 0;
-  line-height: 1.6;
-}
-
-.packet-flow-diagram {
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  background-color: var(--bg-surface);
-}
-
-.flow-img {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 @media (max-width: 768px) {
