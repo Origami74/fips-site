@@ -39,6 +39,7 @@ import OrgQuality from './OrgQuality.vue'
 import MeshHealFlow from './MeshHealFlow.vue'
 import TreeConvergeFlow from './TreeConvergeFlow.vue'
 import OrgBeacon from './OrgBeacon.vue'
+import OrgBloom from './OrgBloom.vue'
 
 const tabs = [
   {
@@ -76,6 +77,12 @@ const tabs = [
     label: 'Zero-touch peering',
     caption: 'A new node beacons on shared media. Neighbors auto-peer and absorb it into the tree.',
     component: markRaw(OrgBeacon),
+  },
+  {
+    id: 'bloom',
+    label: 'Bloom filters',
+    caption: 'Each peer holds a compact bit-array of "what\'s reachable through me". A new node\'s bit propagates along tree edges until everyone knows.',
+    component: markRaw(OrgBloom),
   },
 ] as const
 type TabId = typeof tabs[number]['id']
