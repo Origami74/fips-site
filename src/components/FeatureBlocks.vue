@@ -3,7 +3,7 @@
        a single idea: a short headline, a one-liner, and one supporting
        visual. Lighter text than the previous prose-heavy layout. -->
   <section id="what-it-does" class="why-section">
-    <article class="why-frame">
+    <article id="why-01" class="why-frame">
       <div class="container why-frame__inner">
         <p class="why-eyebrow">Why · 01</p>
         <h2 class="why-heading">Transport agnostic</h2>
@@ -15,7 +15,7 @@
       </div>
     </article>
 
-    <article class="why-frame">
+    <article id="why-02" class="why-frame">
       <div class="container why-frame__inner">
         <p class="why-eyebrow">Why · 02</p>
         <h2 class="why-heading">Same apps, new plumbing.</h2>
@@ -27,7 +27,7 @@
       </div>
     </article>
 
-    <article class="why-frame">
+    <article id="why-03" class="why-frame">
       <div class="container why-frame__inner">
         <p class="why-eyebrow">Why · 03</p>
         <h2 class="why-heading">Self-organizing</h2>
@@ -40,15 +40,15 @@
       </div>
     </article>
 
-    <article class="why-frame">
+    <article id="why-04" class="why-frame">
       <div class="container why-frame__inner">
         <p class="why-eyebrow">Why · 04</p>
-        <h2 class="why-heading">One keypair. Three identifiers.</h2>
+        <h2 class="why-heading">One keypair. Zero registries.</h2>
         <p class="why-subhead">
-          One Nostr secp256k1 keypair, generated locally — no
-          registration, no authority. <code>npub</code> for sessions,
-          <code>node_addr</code> (a SHA-256 hash) for mesh routing,
-          <code>fd00::/8</code> IPv6 for unmodified apps.
+          One Nostr secp256k1 keypair, generated locally.
+          <code>npub</code> for sessions, <code>node_addr</code> (a
+          SHA-256 hash) for mesh routing. Existing applications see
+          an <code>ipv6_addr</code>, no modification needed.
         </p>
         <WhyIdentity class="why-diagram why-diagram--ident" />
       </div>
@@ -133,7 +133,7 @@ import WhyIdentity from './WhyIdentity.vue'
   max-width: 920px;
 }
 .why-diagram--ident {
-  max-width: 920px;
+  max-width: 1100px;
 }
 
 /* On short / small viewports, drop the full-height requirement so the

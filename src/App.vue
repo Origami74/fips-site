@@ -5,7 +5,6 @@
       <HeroSection />
       <FeatureBlocks />
       <LearnDiscover />
-      <GetInvolved />
     </main>
     <SiteFooter />
 
@@ -20,7 +19,6 @@ import SiteFooter from './components/SiteFooter.vue'
 import HeroSection from './components/HeroSection.vue'
 import FeatureBlocks from './components/FeatureBlocks.vue'
 import LearnDiscover from './components/LearnDiscover.vue'
-import GetInvolved from './components/GetInvolved.vue'
 </script>
 
 <style>

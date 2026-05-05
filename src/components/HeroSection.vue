@@ -9,7 +9,7 @@
         </h1>
 
         <p class="hero-tagline">
-          A self-organizing encrypted mesh that works over anything you can send packets through.
+          A self-organizing encrypted mesh that works over any medium that can transfer packets.
         </p>
 
         <div class="hero-ctas">

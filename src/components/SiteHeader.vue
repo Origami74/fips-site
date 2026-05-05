@@ -11,12 +11,22 @@
 
       <nav class="main-nav" :class="{ 'is-open': mobileMenuOpen }" aria-label="Site sections">
         <a
+          href="#"
+          class="nav-link"
+          :class="{ 'is-active': isAtTop }"
+          :aria-current="isAtTop ? 'true' : undefined"
+          @click="goHome"
+        >Home</a>
+        <a
           v-for="section in sections"
           :key="section.id"
           :href="`#${section.id}`"
           class="nav-link"
-          :class="{ 'is-active': activeSection === section.id }"
-          :aria-current="activeSection === section.id ? 'true' : undefined"
+          :class="[
+            { 'is-active': !isAtTop && activeSection === section.id },
+            section.kind === 'sub' ? 'nav-link--sub' : '',
+          ]"
+          :aria-current="!isAtTop && activeSection === section.id ? 'true' : undefined"
           @click="mobileMenuOpen = false"
         >{{ section.label }}</a>
       </nav>
@@ -60,17 +70,34 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useScrollSpy } from '../composables/useScrollSpy'
 
+// "Why" jumps to the section, then numbered sub-links per frame.
+// Each numbered link scrolls to its specific Why · NN article.
 const sections = [
-  { id: 'what-it-does', label: 'Why' },
+  { id: 'why-01',         label: 'Why' },
+  { id: 'why-02',         label: '· 02', kind: 'sub' },
+  { id: 'why-03',         label: '· 03', kind: 'sub' },
+  { id: 'why-04',         label: '· 04', kind: 'sub' },
   { id: 'learn-discover', label: 'Learn & Join' },
 ]
 
 const { activeSection } = useScrollSpy(sections.map(s => s.id))
 const isScrolled = ref(false)
+const isAtTop = ref(true)
 const mobileMenuOpen = ref(false)
 
 function onScroll() {
   isScrolled.value = window.scrollY > 40
+  isAtTop.value = window.scrollY < 80
+}
+
+function goHome(e: MouseEvent) {
+  e.preventDefault()
+  mobileMenuOpen.value = false
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+  // Drop the trailing `#` from the URL.
+  if (history.replaceState) {
+    history.replaceState(null, '', window.location.pathname + window.location.search)
+  }
 }
 
 onMounted(() => {
@@ -173,6 +200,18 @@ onUnmounted(() => {
   position: relative;
   padding-bottom: 2px;
 }
+
+/* Sub-links (the Why · NN frame jumps) sit tight against the
+   preceding "Why" link, smaller and dimmer until hovered. */
+.nav-link--sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  margin-left: calc(var(--space-lg) * -1 + 6px);
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+.nav-link--sub:hover { opacity: 1; }
+.nav-link--sub.is-active { opacity: 1; }
 
 .nav-link::after {
   content: '';

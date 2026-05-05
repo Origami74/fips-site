@@ -180,8 +180,8 @@
         <li><a href="https://github.com/jmcorgan/fips/blob/master/docs/design/architecture.md" target="_blank" rel="noopener noreferrer">Spec</a></li>
         <li><a href="https://github.com/jmcorgan/fips" target="_blank" rel="noopener noreferrer">Source</a></li>
         <li><a href="https://github.com/jmcorgan/fips/releases" target="_blank" rel="noopener noreferrer">Releases</a></li>
-        <li><a href="https://primal.net/e/nevent1qqsvd3nzk5p92fzp9z7p34m50039dwee0aemrvk9cl2jpng3kawsz0q6wuh7w" target="_blank" rel="noopener noreferrer">Nostr</a></li>
-        <li><a href="https://github.com/jmcorgan/fips/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
+        <li><a href="https://primal.net/e/nevent1qqsvd3nzk5p92fzp9z7p34m50039dwee0aemrvk9cl2jpng3kawsz0q6wuh7w" target="_blank" rel="noopener noreferrer">Discuss it</a></li>
+        <li><a href="https://github.com/jmcorgan/fips/issues" target="_blank" rel="noopener noreferrer">Break it</a></li>
       </ul>
     </div>
   </section>
@@ -522,8 +522,15 @@ onBeforeUnmount(() => {
 .ld-section {
   background-color: #050a14;  /* darker than the page bg, more "void" */
   position: relative;
-  min-height: 100vh;
+  /* Fit the section into the viewport BELOW the fixed nav.
+     Without this, the section is 100vh tall and its bottom edge
+     always sits below the visible area. */
+  min-height: calc(100vh - var(--header-height));
   overflow: hidden;
+  /* Tight top padding so anchor-scrolled eyebrow lands just below
+     the fixed header instead of being pushed deep into the viewport. */
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
 }
 
 /* Header and footer are absolute overlays so the stage owns the
@@ -532,7 +539,7 @@ onBeforeUnmount(() => {
    transparent gaps fall through via children that don't capture. */
 .ld-header-wrap {
   position: absolute;
-  top: var(--space-xl);
+  top: var(--space-md);
   left: 0;
   right: 0;
   z-index: 4;
@@ -543,7 +550,7 @@ onBeforeUnmount(() => {
 
 .ld-footer-wrap {
   position: absolute;
-  bottom: var(--space-xl);
+  bottom: var(--space-md);
   left: 0;
   right: 0;
   z-index: 4;
