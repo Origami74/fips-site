@@ -39,6 +39,20 @@
         <SelfOrganizingFlow class="why-diagram why-diagram--mesh" />
       </div>
     </article>
+
+    <article class="why-frame">
+      <div class="container why-frame__inner">
+        <p class="why-eyebrow">Why · 04</p>
+        <h2 class="why-heading">One keypair. Three identifiers.</h2>
+        <p class="why-subhead">
+          One Nostr secp256k1 keypair, generated locally — no
+          registration, no authority. <code>npub</code> for sessions,
+          <code>node_addr</code> (a SHA-256 hash) for mesh routing,
+          <code>fd00::/8</code> IPv6 for unmodified apps.
+        </p>
+        <WhyIdentity class="why-diagram why-diagram--ident" />
+      </div>
+    </article>
   </section>
 </template>
 
@@ -46,6 +60,7 @@
 import TransportFlow from './TransportFlow.vue'
 import WorksFlow from './WorksFlow.vue'
 import SelfOrganizingFlow from './SelfOrganizingFlow.vue'
+import WhyIdentity from './WhyIdentity.vue'
 </script>
 
 <style scoped>
@@ -115,6 +130,9 @@ import SelfOrganizingFlow from './SelfOrganizingFlow.vue'
   max-width: 680px;
 }
 .why-diagram--mesh {
+  max-width: 920px;
+}
+.why-diagram--ident {
   max-width: 920px;
 }
 

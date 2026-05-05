@@ -5,11 +5,12 @@
       <HeroSection />
       <FeatureBlocks />
       <LearnDiscover />
-      <ArchitectureSection />
-      <IdentitySection />
       <GetInvolved />
     </main>
     <SiteFooter />
+
+    <!-- Demo: floating variant in the bottom-right corner. -->
+    <airplane-ready variant="floating" position="bottom-right"></airplane-ready>
   </div>
 </template>
 
@@ -18,9 +19,7 @@ import SiteHeader from './components/SiteHeader.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import HeroSection from './components/HeroSection.vue'
 import FeatureBlocks from './components/FeatureBlocks.vue'
-import ArchitectureSection from './components/ArchitectureSection.vue'
 import LearnDiscover from './components/LearnDiscover.vue'
-import IdentitySection from './components/IdentitySection.vue'
 import GetInvolved from './components/GetInvolved.vue'
 </script>
 
