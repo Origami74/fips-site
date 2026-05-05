@@ -612,20 +612,41 @@ onBeforeUnmount(() => {
   pointer-events: none;
   /* Sit just under the hero content but above the page background. */
   z-index: 0;
-  /* Soft fade at the bottom so the hero blends into the next section. */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.9) 14%,
-    rgba(0, 0, 0, 0.9) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.9) 14%,
-    rgba(0, 0, 0, 0.9) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  /* Two mask layers, intersected:
+     1) vertical fade so the hero blends into the next section
+     2) soft radial "quiet zone" behind the title + CTA stack — dims the
+        mesh in the middle without blanking it, so labels stay legible. */
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9) 14%,
+      rgba(0, 0, 0, 0.9) 80%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    radial-gradient(
+      ellipse 40% 38% at 50% 48%,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.6) 45%,
+      rgba(0, 0, 0, 0.9) 80%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9) 14%,
+      rgba(0, 0, 0, 0.9) 80%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    radial-gradient(
+      ellipse 40% 38% at 50% 48%,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.6) 45%,
+      rgba(0, 0, 0, 0.9) 80%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  mask-composite: intersect;
 }
 </style>
