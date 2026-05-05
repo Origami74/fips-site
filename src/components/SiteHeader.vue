@@ -2,8 +2,11 @@
   <header class="site-header" :class="{ 'is-scrolled': isScrolled }">
     <div class="header-inner container--wide container">
       <a href="#" class="logo" aria-label="FIPS home">
-        <span class="logo-text">FIPS</span>
-        <span class="logo-sub">fips.network</span>
+        <img class="logo-icon" src="/fips_logo.png" alt="" aria-hidden="true"/>
+        <span class="logo-text-wrap">
+          <span class="logo-text">FIPS</span>
+          <span class="logo-sub">fips.network</span>
+        </span>
       </a>
 
       <nav class="main-nav" :class="{ 'is-open': mobileMenuOpen }" aria-label="Site sections">
@@ -58,11 +61,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useScrollSpy } from '../composables/useScrollSpy'
 
 const sections = [
-  { id: 'what-it-does', label: 'What It Does' },
-  { id: 'how-it-works', label: 'How It Works' },
-  { id: 'learn-discover', label: 'Learn & Discover' },
-  { id: 'identity', label: 'Identity' },
-  { id: 'get-involved', label: 'Get Involved' },
+  { id: 'what-it-does', label: 'Why' },
+  { id: 'learn-discover', label: 'Learn & Join' },
 ]
 
 const { activeSection } = useScrollSpy(sections.map(s => s.id))
@@ -111,9 +111,27 @@ onUnmounted(() => {
 /* Logo */
 .logo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
   line-height: 1;
   flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: block;
+  transition: filter 0.2s, transform 0.2s;
+}
+.logo:hover .logo-icon {
+  filter: drop-shadow(0 0 8px rgba(64, 160, 96, 0.6));
+}
+
+.logo-text-wrap {
+  display: flex;
+  flex-direction: column;
 }
 
 .logo-text {

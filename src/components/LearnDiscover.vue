@@ -161,7 +161,7 @@
         @mouseleave="learnActive = false"
         @focus="learnActive = true"
         @blur="learnActive = false"
-      >Learn</a>
+      ><span class="ld-cta-arrow ld-cta-arrow--left" aria-hidden="true">←</span><span class="ld-cta-label">Learn</span></a>
 
       <a
         href="https://join.fips.network"
@@ -172,7 +172,7 @@
         @mouseleave="joinActive = false"
         @focus="joinActive = true"
         @blur="joinActive = false"
-      >Join</a>
+      ><span class="ld-cta-label">Join</span><span class="ld-cta-arrow" aria-hidden="true">→</span></a>
     </div>
 
     <div class="container ld-footer-wrap">
@@ -527,7 +527,9 @@ onBeforeUnmount(() => {
 }
 
 /* Header and footer are absolute overlays so the stage owns the
-   full viewport height — no vertical real estate stolen by chrome. */
+   full viewport height — no vertical real estate stolen by chrome.
+   pointer-events on the wrappers themselves stay on; we let the
+   transparent gaps fall through via children that don't capture. */
 .ld-header-wrap {
   position: absolute;
   top: var(--space-xl);
@@ -548,7 +550,34 @@ onBeforeUnmount(() => {
   pointer-events: none;
 }
 
-.ld-header { margin: 0; }
+.ld-header { margin: 0; position: relative; }
+
+/* Soft dark vignette behind the header so the eyebrow + heading
+   read clearly against the dense tree background. The ::before
+   bounds extend well beyond the gradient's fade-to-zero so no
+   rectangle edge ever shows. */
+.ld-header::before {
+  content: '';
+  position: absolute;
+  inset: -70px -260px -70px -180px;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 28% 55% at 30% 50%,
+    rgba(5, 10, 20, 0.95) 0%,
+    rgba(5, 10, 20, 0.7) 30%,
+    rgba(5, 10, 20, 0.3) 60%,
+    rgba(5, 10, 20, 0) 100%
+  );
+  pointer-events: none;
+}
+.ld-header .section-eyebrow,
+.ld-header .section-heading {
+  text-shadow:
+    0 0 18px rgba(0, 0, 0, 0.95),
+    0 0 36px rgba(0, 0, 0, 0.7);
+}
+.ld-header .section-heading { color: var(--text-primary); }
+.ld-header .section-eyebrow { color: #c0d4e8; }
 
 /* ===== Stage fills the entire section ===== */
 .ld-stage {
@@ -671,15 +700,52 @@ onBeforeUnmount(() => {
   z-index: 3;
   white-space: nowrap;
   opacity: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.18em;
   transition:
     opacity 0.7s ease 1.6s,
     color 0.25s ease,
-    text-shadow 0.25s ease;
+    text-shadow 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
   text-shadow:
-    0 0 30px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(0, 0, 0, 0.6),
     0 0 60px rgba(0, 0, 0, 0.4);
 }
 .ld-section.is-visible .ld-cta { opacity: 1; }
+
+/* Underline that scales in on hover — the header-style affordance
+   that screams "this is a link". */
+.ld-cta-label {
+  position: relative;
+  display: inline-block;
+}
+.ld-cta-label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.08em;
+  height: 0.06em;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+  border-radius: 1px;
+}
+.ld-cta:hover .ld-cta-label::after,
+.ld-cta:focus .ld-cta-label::after { transform: scaleX(1); }
+
+/* Arrows — visible by default at half opacity, slide outward on
+   hover toward their tree. */
+.ld-cta-arrow {
+  display: inline-block;
+  font-weight: 500;
+  opacity: 0.55;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.ld-cta:hover .ld-cta-arrow,
+.ld-cta:focus .ld-cta-arrow { opacity: 1; }
 
 .ld-cta--learn {
   left: 30%;
@@ -688,10 +754,13 @@ onBeforeUnmount(() => {
 .ld-cta--learn:hover,
 .ld-cta--learn:focus {
   color: var(--ld-cyan-bright);
+  transform: translate(calc(-50% - 6px), -50%);
   text-shadow:
     0 0 24px var(--ld-cyan),
     0 0 48px rgba(90, 183, 224, 0.5);
 }
+.ld-cta--learn:hover .ld-cta-arrow,
+.ld-cta--learn:focus .ld-cta-arrow { transform: translateX(-4px); }
 
 .ld-cta--join {
   left: 70%;
@@ -700,32 +769,64 @@ onBeforeUnmount(() => {
 .ld-cta--join:hover,
 .ld-cta--join:focus {
   color: var(--ld-green-bright);
+  transform: translate(calc(-50% + 6px), -50%);
   text-shadow:
     0 0 24px var(--ld-green),
     0 0 48px rgba(92, 216, 122, 0.5);
 }
+.ld-cta--join:hover .ld-cta-arrow,
+.ld-cta--join:focus .ld-cta-arrow { transform: translateX(4px); }
 
 /* ===== Secondary chips ===== */
+.ld-footer-wrap > .container {
+  position: relative;
+}
+/* Soft vignette behind chips so they read against the dense
+   trees at the bottom. */
+.ld-footer-wrap > .container::before {
+  content: '';
+  position: absolute;
+  inset: -20px -12% -14px -12%;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 65% 100% at 50% 50%,
+    rgba(5, 10, 20, 0.97) 0%,
+    rgba(5, 10, 20, 0.85) 50%,
+    rgba(5, 10, 20, 0) 100%
+  );
+  pointer-events: none;
+}
 .ld-chips {
   list-style: none;
   padding: 0;
-  margin: var(--space-md) 0 0;
+  margin: 0;
   display: flex;
-  gap: var(--space-sm);
+  gap: 6px;
   justify-content: center;
   flex-wrap: wrap;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
+  /* Make the chips themselves capture clicks even though their
+     wrapper has pointer-events: none. */
+  pointer-events: auto;
 }
+.ld-chips li { display: inline-flex; }
 .ld-chips a {
-  color: var(--text-muted);
-  padding: 5px 10px;
-  border-radius: 4px;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  color: #d4e4f4;
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(180, 200, 230, 0.25);
+  background-color: rgba(8, 14, 26, 0.88);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+  pointer-events: auto;
 }
 .ld-chips a:hover {
-  color: var(--text-primary);
-  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.55);
+  background-color: rgba(20, 32, 50, 0.95);
 }
 
 /* ===== Reduced motion ===== */
