@@ -33,25 +33,26 @@
 
 <script setup lang="ts">
 import { computed, markRaw, onBeforeUnmount, onMounted, ref } from 'vue'
-import OrgRootElect from './OrgRootElect.vue'
+import OrgBeacon from './OrgBeacon.vue'
 import OrgMerge from './OrgMerge.vue'
 import OrgQuality from './OrgQuality.vue'
-import MeshHealFlow from './MeshHealFlow.vue'
-import TreeConvergeFlow from './TreeConvergeFlow.vue'
-import OrgBeacon from './OrgBeacon.vue'
+import OrgRootElect from './OrgRootElect.vue'
 import OrgBloom from './OrgBloom.vue'
 
+// Ordered to gradually escalate complexity: concrete, physical peering
+// up front; root election as the conceptual pivot; abstract reachability
+// data structures at the end.
 const tabs = [
   {
-    id: 'elect',
-    label: 'Root election',
-    caption: 'Lowest address wins. Nodes converge on the same root with zero coordination.',
-    component: markRaw(OrgRootElect),
+    id: 'beacon',
+    label: 'Zero-touch peering',
+    caption: 'Nodes appear on shared media, beacon, and form peer links with whoever hears them. No setup, no coordinator.',
+    component: markRaw(OrgBeacon),
   },
   {
     id: 'merge',
     label: 'Merge on contact',
-    caption: 'Two islands meet over any transport. The trees collapse into one.',
+    caption: 'Two islands meet over any transport. The trees collapse into one — and split apart again if the bridge breaks.',
     component: markRaw(OrgMerge),
   },
   {
@@ -61,22 +62,10 @@ const tabs = [
     component: markRaw(OrgQuality),
   },
   {
-    id: 'heal',
-    label: 'Self-heal',
-    caption: 'A hub dies. The spanning tree reconverges around the gap.',
-    component: markRaw(MeshHealFlow),
-  },
-  {
-    id: 'gossip',
-    label: 'Viral discovery',
-    caption: 'Bloom-filter reachability propagates through tree edges. New peers spread by gossip.',
-    component: markRaw(TreeConvergeFlow),
-  },
-  {
-    id: 'beacon',
-    label: 'Zero-touch peering',
-    caption: 'A new node beacons on shared media. Neighbors auto-peer and absorb it into the tree.',
-    component: markRaw(OrgBeacon),
+    id: 'elect',
+    label: 'Root election',
+    caption: 'Lowest address wins. Nodes converge on the same root with zero coordination — and re-converge if it dies.',
+    component: markRaw(OrgRootElect),
   },
   {
     id: 'bloom',
@@ -87,7 +76,7 @@ const tabs = [
 ] as const
 type TabId = typeof tabs[number]['id']
 
-const active = ref<TabId>('elect')
+const active = ref<TabId>('beacon')
 const current = computed(() => tabs.find(t => t.id === active.value)!)
 
 const CYCLE_MS = 18000
