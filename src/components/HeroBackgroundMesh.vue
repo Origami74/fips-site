@@ -33,10 +33,16 @@ const NODE_RADIUS = 6
 const DRIFT_NUDGE = 0.012              // per-frame random drift kick
 // Synthetic link stats — derived from distance, just to feel network-y.
 // Closer pairs read as fatter, faster, lower-latency links.
-const LATENCY_MIN_MS = 6
-const LATENCY_MAX_MS = 80
-const BW_MIN_MBPS = 4
-const BW_MAX_MBPS = 96
+// Per-medium ranges. Wired (solid) links are fast/fat; short-range radio
+// (dashed) is mid-tier; long-range radio (sparse dash) is the slowest and
+// thinnest. Single source of truth for the displayed `Xms · Y Mb/s` labels.
+const LATENCY_WIRED:    [number, number] = [3, 15]
+const LATENCY_WL_SHORT: [number, number] = [8, 35]
+const LATENCY_WL_LONG:  [number, number] = [25, 120]
+const BW_WIRED:    [number, number] = [250, 940]
+const BW_WL_SHORT: [number, number] = [50, 300]
+const BW_WL_LONG:  [number, number] = [8, 80]
+const LATENCY_FALLBACK_MS = 120
 const LINE_W_MIN = 0.8
 const LINE_W_MAX = 2.6
 // Multi-hop messages route through the mesh: pick a source, BFS along
@@ -44,9 +50,9 @@ const LINE_W_MAX = 2.6
 // the destination. Each hop's duration scales with that link's *displayed*
 // latency — fast links carry the packet quickly, slow ones drag it along.
 const PACKET_SPAWN_PERIOD_MS = 650
-const PACKET_HOP_MS_MIN = 120          // floor so a 6 ms link still reads
-const PACKET_HOP_MS_MAX = 900          // ceiling so an 80 ms link doesn't crawl
-const PACKET_HOP_MS_PER_LATENCY = 9    // multiplier from latency-ms → hop-ms
+const PACKET_HOP_MS_MIN = 120          // floor so a 3 ms wired link still reads
+const PACKET_HOP_MS_MAX = 1400         // ceiling so a 120 ms long-range link doesn't crawl
+const PACKET_HOP_MS_PER_LATENCY = 13   // multiplier from latency-ms → hop-ms
 const PACKET_TAIL_FADE_HOPS = 1.4      // trail length, in hops
 
 // Palette borrowed from learn.fips.network — cyan-leaning, lighter feel
@@ -331,17 +337,27 @@ onMounted(() => {
     }
   }
 
+  // Per-medium latency/bandwidth ranges. Radio (dashed) links carry more
+  // latency and less throughput than wired (solid) ones; long-range radio
+  // is the slowest and thinnest of all.
+  function statsRangeFor(idA: number, idB: number) {
+    if (isLongRange(idA, idB)) return { lat: LATENCY_WL_LONG, bw: BW_WL_LONG }
+    if (isWireless(idA, idB))  return { lat: LATENCY_WL_SHORT, bw: BW_WL_SHORT }
+    return { lat: LATENCY_WIRED, bw: BW_WIRED }
+  }
+
   // Latency for a given link, derived from current distance + per-edge
   // ranges. Single source of truth — the displayed `Xms` and the packet
   // hop duration both come through here.
   function latencyMsFor(idA: number, idB: number) {
     const a = nodes[idA]
     const b = nodes[idB]
-    if (!a || !b) return LATENCY_MAX_MS
+    if (!a || !b) return LATENCY_FALLBACK_MS
     const dist = Math.hypot(a.x - b.x, a.y - b.y)
     const r = rangesFor(idA, idB)
     const strength = linkStrength(dist, r.disconnect)
-    return lerp(LATENCY_MAX_MS, LATENCY_MIN_MS, strength)
+    const [latMin, latMax] = statsRangeFor(idA, idB).lat
+    return lerp(latMax, latMin, strength)
   }
 
   function packetHopMs(idA: number, idB: number) {
@@ -358,8 +374,9 @@ onMounted(() => {
     // Hide stats until the line is long enough to host a label without
     // colliding with the endpoint glows.
     if (dist < 110) return
-    const latency = Math.round(lerp(LATENCY_MAX_MS, LATENCY_MIN_MS, strength))
-    const bw = Math.round(lerp(BW_MIN_MBPS, BW_MAX_MBPS, strength))
+    const { lat, bw: bwRange } = statsRangeFor(a.id, b.id)
+    const latency = Math.round(lerp(lat[1], lat[0], strength))
+    const bw = Math.round(lerp(bwRange[0], bwRange[1], strength))
     const text = `${latency}ms · ${bw} Mb/s`
     const mx = (a.x + b.x) / 2
     const my = (a.y + b.y) / 2
