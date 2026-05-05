@@ -83,7 +83,7 @@ type TabId = typeof tabs[number]['id']
 const active = ref<TabId>('elect')
 const current = computed(() => tabs.find(t => t.id === active.value)!)
 
-const CYCLE_MS = 14000
+const CYCLE_MS = 18000
 let timer: number | null = null
 
 function clearTimer() {

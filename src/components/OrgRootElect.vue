@@ -75,22 +75,40 @@
         <line x1="540" y1="240" x2="373" y2="314"/>
       </g>
 
-      <!-- Tier-2 / tier-3 arrows. Their parents (B, C, D, F) all survive
-           A's death, so these stay valid through the whole election +
-           failover. Visible from tree-form until just before loop reset. -->
+      <!-- Tier-2 / tier-3 arrows whose parents survive A's death.
+           E→B, H+I→C, F+G→D — visible from tree-form until loop reset. -->
       <g stroke="var(--accent-gold, #f5b942)" stroke-width="1.5" fill="none" opacity="0" marker-end="url(#oe-arrow)">
         <animate attributeName="opacity"
                  values="0;0;1;1;0"
                  keyTimes="0;0.30;0.32;0.95;1"
                  dur="13s" repeatCount="indefinite" calcMode="discrete"/>
-        <!-- E → B,  H + I → C,  F + G → D,  J → F -->
-        <line x1="90"  y1="150" x2="170" y2="230"/>
-        <line x1="260" y1="110" x2="350" y2="190"/>
-        <line x1="440" y1="80"  x2="368" y2="188"/>
-        <line x1="540" y1="130" x2="540" y2="226"/>
-        <line x1="640" y1="200" x2="553" y2="235"/>
-        <line x1="610" y1="50"  x2="549" y2="120"/>
+        <line x1="90"  y1="150" x2="170" y2="230"/> <!-- E → B -->
+        <line x1="260" y1="110" x2="350" y2="190"/> <!-- H → C -->
+        <line x1="440" y1="80"  x2="368" y2="188"/> <!-- I → C -->
+        <line x1="540" y1="130" x2="540" y2="226"/> <!-- F → D -->
+        <line x1="640" y1="200" x2="553" y2="235"/> <!-- G → D -->
       </g>
+
+      <!-- J's parent. J → F is its initial parent (4 hops to root after
+           A dies: J→F→D→C→B). Once D has reparented, J realises that
+           going via the I-J non-tree mesh link is shorter (J→I→C→B = 3
+           hops), so the J→F arrow fades and J→I appears. -->
+      <line x1="610" y1="50"  x2="549" y2="120"
+            stroke="var(--accent-gold, #f5b942)" stroke-width="1.5" fill="none"
+            opacity="0" marker-end="url(#oe-arrow)">
+        <animate attributeName="opacity"
+                 values="0;0;1;1;0;0"
+                 keyTimes="0;0.30;0.32;0.83;0.85;1"
+                 dur="13s" repeatCount="indefinite" calcMode="discrete"/>
+      </line>
+      <line x1="610" y1="50"  x2="454" y2="78"
+            stroke="var(--accent-gold, #f5b942)" stroke-width="1.5" fill="none"
+            opacity="0" marker-end="url(#oe-arrow)">
+        <animate attributeName="opacity"
+                 values="0;0;1;1;0"
+                 keyTimes="0;0.85;0.87;0.95;1"
+                 dur="13s" repeatCount="indefinite" calcMode="discrete"/>
+      </line>
 
       <!-- Failover arrow: C → B. Appears once C realises its old parent
            (A) is gone. -->
