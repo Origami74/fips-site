@@ -32,15 +32,11 @@
         <p class="why-eyebrow">Why · 03</p>
         <h2 class="why-heading">Self-organizing</h2>
         <p class="why-subhead">
-          Connect to one peer, reach the whole mesh. Routes adapt; the
-          network heals around failures.
+          No coordinator, no setup. The mesh elects its own root, merges
+          with neighbours on contact, and reroutes around damage on its
+          own.
         </p>
-        <img
-          src="/diagrams/fips-mesh-topology.svg"
-          alt="Mesh network topology — nodes connected in a self-organizing mesh with spanning tree paths highlighted"
-          class="why-diagram why-diagram--mesh"
-          loading="lazy"
-        />
+        <SelfOrganizingFlow class="why-diagram why-diagram--mesh" />
       </div>
     </article>
   </section>
@@ -49,6 +45,7 @@
 <script setup lang="ts">
 import TransportFlow from './TransportFlow.vue'
 import WorksFlow from './WorksFlow.vue'
+import SelfOrganizingFlow from './SelfOrganizingFlow.vue'
 </script>
 
 <style scoped>
@@ -118,11 +115,7 @@ import WorksFlow from './WorksFlow.vue'
   max-width: 680px;
 }
 .why-diagram--mesh {
-  max-width: 720px;
-  height: auto;
-  border: 1px solid var(--color-fmp-border);
-  border-radius: 8px;
-  background-color: var(--bg-page);
+  max-width: 920px;
 }
 
 /* On short / small viewports, drop the full-height requirement so the
