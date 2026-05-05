@@ -98,7 +98,11 @@
               :cy="s.y"
               :r="s.size"
               class="ld-spark"
-              :style="{ '--gd': `${s.delay}s` }"
+              :style="{
+                '--gd': `${s.delay}s`,
+                '--td': `${s.twinkleDur}s`,
+                '--to': `${s.twinkleOffset}s`,
+              }"
             />
           </g>
 
@@ -146,7 +150,11 @@
               :cy="s.y"
               :r="s.size"
               class="ld-spark"
-              :style="{ '--gd': `${s.delay}s` }"
+              :style="{
+                '--gd': `${s.delay}s`,
+                '--td': `${s.twinkleDur}s`,
+                '--to': `${s.twinkleOffset}s`,
+              }"
             />
           </g>
         </g>
@@ -219,6 +227,8 @@ interface Spark {
   y: number
   size: number
   delay: number
+  twinkleDur: number
+  twinkleOffset: number
 }
 interface Tendril {
   id: number
@@ -418,6 +428,10 @@ function buildFan(side: 'left' | 'right', seed: number): Fan {
       size: 0.8 + rng() * 1.6,
       // Sparks fade in once the wave has mostly arrived.
       delay: 1.3 + rng() * 0.8,
+      // Each spark twinkles at its own pace + phase so the
+      // field shimmers organically instead of pulsing in unison.
+      twinkleDur: 2.6 + rng() * 3.2,
+      twinkleOffset: rng() * 4,
     })
   }
 
@@ -674,13 +688,27 @@ onBeforeUnmount(() => {
 .ld-fan--right .ld-node { fill: var(--ld-green-bright); }
 .ld-section.is-visible .ld-node { opacity: 1; }
 
-/* ===== Sparks: tiny bright dots, fade in last ===== */
+/* ===== Sparks: tiny bright dots, fade in last, then twinkle
+   forever at their own pace + phase. Subtle on purpose — the
+   amplitude is small so the field just feels alive. ===== */
 .ld-spark {
   fill: #ffffff;
   opacity: 0;
-  transition: opacity 0.6s ease var(--gd, 0s);
 }
-.ld-section.is-visible .ld-spark { opacity: 0.85; }
+.ld-section.is-visible .ld-spark {
+  animation:
+    ld-spark-in 0.7s ease both var(--gd, 0s),
+    ld-spark-twinkle var(--td, 4s) ease-in-out
+      calc(var(--gd, 0s) + 0.7s + var(--to, 0s)) infinite;
+}
+@keyframes ld-spark-in {
+  from { opacity: 0; }
+  to   { opacity: 0.85; }
+}
+@keyframes ld-spark-twinkle {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 0.45; }
+}
 
 /* ===== Hover propagation: cross-recolour the OPPOSITE fan ===== */
 .ld-section.is-learn-active .ld-fan--right .ld-tendril,
@@ -843,6 +871,7 @@ onBeforeUnmount(() => {
   }
   .ld-tendril, .ld-edge { stroke-dashoffset: 0; }
   .ld-node, .ld-spark, .ld-cta { opacity: 1; }
+  .ld-section.is-visible .ld-spark { animation: none; opacity: 0.85; }
   .ld-flare { opacity: 1; transform: scale(1); }
 }
 
