@@ -20,7 +20,7 @@
        15s loop. -->
   <div class="diagram">
     <svg
-      viewBox="0 0 720 420"
+      viewBox="0 0 720 380"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-label="A seven-node spanning tree with a 6-bit bloom filter under each node. A new node L joins under C; gold comets carry L's identity along tree edges; every node's L bit lights up as the FilterAnnounce arrives."
@@ -46,7 +46,7 @@
       </g>
 
       <!-- ===== L's dashed peer link to C ===== -->
-      <line x1="40" y1="360" x2="170" y2="290"
+      <line x1="40" y1="290" x2="170" y2="290"
             stroke="var(--color-fmp-border)" stroke-width="1.5"
             stroke-dasharray="4 5" opacity="0">
         <animate attributeName="opacity"
@@ -65,7 +65,7 @@
       <g transform="translate(590 290)"><circle r="11" class="node"/><text class="node-label">F</text></g>
 
       <!-- ===== L (the joiner) — fades in at 18% ===== -->
-      <g transform="translate(40 360)" opacity="0">
+      <g transform="translate(40 290)" opacity="0">
         <animate attributeName="opacity"
                  values="0;0;1;1;0"
                  keyTimes="0;0.18;0.20;0.95;1"
@@ -197,7 +197,7 @@
       </g>
 
       <!-- L bit row — L knows about itself the moment it appears. -->
-      <g transform="translate(40 386)" opacity="0">
+      <g transform="translate(40 316)" opacity="0">
         <animate attributeName="opacity"
                  values="0;0;1;1;0"
                  keyTimes="0;0.18;0.20;0.95;1"
@@ -326,7 +326,7 @@
 <script setup lang="ts"></script>
 
 <style scoped>
-.diagram { width: 100%; max-width: 800px; margin: 0 auto; }
+.diagram { width: 100%; max-width: 760px; margin: 0 auto; }
 .diagram svg { width: 100%; height: auto; display: block; }
 
 .node {
