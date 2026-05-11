@@ -25,7 +25,7 @@
             Learn
           </a>
           <a
-            href="https://github.com/jmcorgan/fips/tree/master/docs/design"
+            href="https://github.com/jmcorgan/fips/tree/master/docs"
             target="_blank"
             rel="noopener noreferrer"
             class="cta cta--ghost cta--docs"

@@ -45,7 +45,7 @@
           <span>GitHub</span>
         </a>
         <a
-          href="https://github.com/jmcorgan/fips/tree/master/docs/design"
+          href="https://github.com/jmcorgan/fips/tree/master/docs"
           target="_blank"
           rel="noopener noreferrer"
           class="action-link action-link--docs"
