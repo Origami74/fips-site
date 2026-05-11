@@ -9,6 +9,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Compensate for the fixed header so anchor jumps land just
+     below it instead of behind it. */
+  scroll-padding-top: var(--header-height);
 }
 
 @media (prefers-reduced-motion: reduce) {

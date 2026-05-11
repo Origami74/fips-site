@@ -38,6 +38,10 @@
   --space-md: 1rem;
   --space-lg: 2rem;
   --space-xl: 4rem;
+
+  /* Effective height of the fixed site header.
+     Logo icon 30 px + 2 × var(--space-md) padding + 1 px border. */
+  --header-height: 63px;
   --space-2xl: 8rem;
 
   /* Layout */

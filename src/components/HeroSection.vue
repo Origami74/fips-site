@@ -1,70 +1,47 @@
 <template>
   <section class="hero">
+    <HeroBackgroundMesh />
     <div class="hero-inner container--wide container">
       <div class="hero-text">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          <span>mesh protocol</span>
-        </div>
-
         <h1 class="hero-title">
           <span class="hero-title-fips">FIPS</span>
-          <span class="hero-title-full">Free Internetworking<br>Peering System</span>
+          <span class="hero-title-full">Free Internetworking Peering System</span>
         </h1>
 
         <p class="hero-tagline">
-          A self-organizing encrypted mesh that works over anything you can send packets through.
+          A self-organizing encrypted mesh that works over any medium that can transfer packets.
         </p>
-
-        <ul class="hero-props">
-          <li>
-            <span class="prop-icon prop-icon--transport">⬡</span>
-            Transport agnostic — WiFi, Ethernet, Bluetooth, UDP, Tor, serial
-          </li>
-          <li>
-            <span class="prop-icon prop-icon--compat">⬡</span>
-            Existing apps work unmodified via IPv6 TUN adapter
-          </li>
-          <li>
-            <span class="prop-icon prop-icon--mesh">⬡</span>
-            Self-organizing — connect to one peer, reach the mesh
-          </li>
-          <li>
-            <span class="prop-icon prop-icon--identity">⬡</span>
-            Nostr keypair is your address — no registrars, no authorities
-          </li>
-        </ul>
 
         <div class="hero-ctas">
           <a
-            href="https://github.com/jmcorgan/fips/tree/master/docs/design"
+            href="https://learn.fips.network"
             target="_blank"
             rel="noopener noreferrer"
-            class="cta cta--primary"
-          >Read the docs</a>
-          <a
-            href="https://github.com/jmcorgan/fips"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="cta cta--secondary"
+            class="cta cta--ghost cta--learn"
           >
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-            Get started
-          </a>
-        </div>
-
-        <div class="hero-secondary-ctas">
-          <a href="https://learn.fips.network" target="_blank" rel="noopener noreferrer" class="cta-text cta-text--learn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
             </svg>
             Learn
           </a>
-          <span class="cta-text-sep" aria-hidden="true">·</span>
-          <a href="https://join.fips.network" target="_blank" rel="noopener noreferrer" class="cta-text cta-text--discover">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14" aria-hidden="true">
+          <a
+            href="https://github.com/jmcorgan/fips/tree/master/docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cta cta--ghost cta--docs"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+            Docs
+          </a>
+          <a
+            href="https://join.fips.network"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cta cta--ghost cta--discover"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75A1.125 1.125 0 0 0 6 4.875v15.75a1.125 1.125 0 0 0 1.5 1.06l6-3 6 3a1.125 1.125 0 0 0 1.5-1.06V4.875A1.125 1.125 0 0 0 19.5 3.75h-12Z"/>
             </svg>
             Discover peers
@@ -72,16 +49,6 @@
         </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="diagram-frame">
-          <img
-            src="/diagrams/fips-node-architecture-hero.svg"
-            alt="FIPS node architecture: layered protocol stack showing Application Interface, IPv6 Adapter, FSP Session Protocol, FMP Mesh Protocol, and Transport layers with Overlay, Shared Medium, and Point-to-Point transport categories"
-            class="hero-diagram"
-            loading="eager"
-          />
-        </div>
-      </div>
     </div>
 
     <div class="hero-scroll-hint" aria-hidden="true">
@@ -93,6 +60,10 @@
   </section>
 </template>
 
+<script setup lang="ts">
+import HeroBackgroundMesh from './HeroBackgroundMesh.vue'
+</script>
+
 <style scoped>
 .hero {
   min-height: 100vh;
@@ -102,39 +73,25 @@
   padding-top: 80px;
   padding-bottom: var(--space-xl);
   position: relative;
+  overflow: hidden;
 }
 
 .hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-2xl);
-  align-items: center;
+  display: flex;
+  justify-content: center;
+  /* Sit above the animated mesh canvas. */
+  position: relative;
+  z-index: 1;
 }
 
-/* Text side */
+/* Text side — single centered column now that the diagram is gone. */
 .hero-text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.hero-badge {
-  display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--color-app-border);
-  box-shadow: 0 0 6px var(--color-app-border);
+  text-align: center;
+  gap: var(--space-lg);
+  max-width: 680px;
 }
 
 .hero-title {
@@ -146,162 +103,76 @@
 
 .hero-title-fips {
   font-family: var(--font-mono);
-  font-size: 5rem;
+  font-size: 5.5rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--text-primary);
+  color: #f5f7fa;
 }
 
 .hero-title-full {
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 400;
-  color: var(--text-muted);
-  letter-spacing: 0.01em;
-  line-height: 1.5;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .hero-tagline {
-  font-size: 1.1875rem;
-  line-height: 1.55;
-  color: var(--text-secondary);
-  max-width: 480px;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  max-width: 560px;
   margin: 0;
 }
 
-/* Key props list */
-.hero-props {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  border-left: 1px solid var(--border-subtle);
-  padding-left: var(--space-md);
-}
-
-.hero-props li {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-sm);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-.prop-icon {
-  font-size: 0.625rem;
-  flex-shrink: 0;
-}
-
-.prop-icon--transport { color: var(--color-transport-border); }
-.prop-icon--compat    { color: var(--color-tun-border); }
-.prop-icon--mesh      { color: var(--color-fmp-border); }
-.prop-icon--identity  { color: var(--color-fsp-border); }
-
-/* CTAs */
+/* CTAs — three equal-weight ghost buttons. Each has its own accent colour
+ * surfaced through the icon and the bottom-edge underline on hover. */
 .hero-ctas {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-md);
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-sm);
 }
 
 .cta {
+  --accent: var(--text-primary);
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 12px 22px;
+  border-radius: 8px;
+  border: 1px solid var(--border-medium);
+  background-color: rgba(255, 255, 255, 0.02);
+  color: var(--text-primary);
   transition: all 0.2s ease;
   white-space: nowrap;
 }
 
-.cta--primary {
-  background-color: var(--color-app-border);
-  color: #0a1a10;
+.cta svg {
+  color: var(--accent);
+  transition: transform 0.2s ease;
 }
 
-.cta--primary:hover {
-  background-color: #52c070;
-  color: #0a1a10;
+.cta:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent);
+  color: #fff;
 }
 
-.cta--secondary {
-  background-color: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border-medium);
+.cta:hover svg {
+  transform: translateY(-1px);
 }
 
-.cta--secondary:hover {
-  background-color: rgba(255,255,255,0.04);
-  border-color: var(--text-secondary);
-}
-
-/* Secondary text CTAs */
-.hero-secondary-ctas {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-top: calc(var(--space-sm) * -0.5);
-}
-
-.cta-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.cta-text--learn {
-  color: var(--color-fmp-border);
-}
-
-.cta-text--learn:hover {
-  color: #a0c8ff;
-}
-
-.cta-text--discover {
-  color: var(--color-app-border);
-}
-
-.cta-text--discover:hover {
-  color: #52c070;
-}
-
-.cta-text-sep {
-  color: var(--text-muted);
-  font-size: 0.875rem;
-}
-
-/* Visual side */
-.hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.diagram-frame {
-  width: 100%;
-  max-width: 680px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  background-color: var(--bg-surface);
-}
-
-.hero-diagram {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+.cta--learn { --accent: var(--color-fmp-border); }
+.cta--docs { --accent: var(--accent-gold); }
+.cta--discover { --accent: var(--color-app-border); }
 
 /* Scroll hint */
 .hero-scroll-hint {
@@ -322,21 +193,14 @@
 }
 
 @media (max-width: 900px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-  }
-
   .hero-title-fips {
     font-size: 3.5rem;
   }
 
-  .hero-visual {
-    order: -1;
-  }
-
-  .diagram-frame {
-    max-width: 100%;
+  .hero-title-full {
+    /* Allow the subtitle to wrap on narrow viewports rather than overflowing. */
+    white-space: normal;
+    font-size: 0.9375rem;
   }
 
   .hero-scroll-hint {
